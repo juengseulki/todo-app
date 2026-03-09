@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phase 2 - 항목 추가 + 삭제</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="app-header">
+        <h1 id="app-title">나만의 Todo 앱</h1>
+        <p id="app-subtitle">오늘도 하나씩 해봐요 💪</p>
+        <div class="summary">
+          남은 할 일: <span id="remaining-count">0</span>개
+        </div>
+      </div>
+
+      <div class="mission-box">
+        <strong>🎯 Phase 2 미션</strong>
+        ① addTodo() 함수: 입력값으로 li 항목을 만들어 목록에 추가하기<br />
+        &nbsp;&nbsp;- createElement로 li, span, button 만들기<br />
+        &nbsp;&nbsp;- span에 입력값 넣기<br />
+        &nbsp;&nbsp;- li에 span, button 붙이기<br />
+        &nbsp;&nbsp;- todo-list에 li 추가하기<br />
+        ② 삭제 버튼 클릭 시 해당 li 삭제하기<br />
+        ③ updateCount() 함수: 남은 항목 수 업데이트하기
+      </div>
+
+      <div class="input-area">
+        <div class="input-row">
+          <input type="text" id="todo-input" placeholder="할 일을 입력하세요" />
+          <button class="btn-add" id="add-btn">추가</button>
+        </div>
+      </div>
+
+      <ul class="todo-list" id="todo-list"></ul>
+    </div>
+  </body>
+</html>

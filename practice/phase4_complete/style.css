@@ -1,0 +1,536 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR",
+    sans-serif;
+
+  background: linear-gradient(
+    180deg,
+    #f8f3ff 0%,
+    #fdf7fb 22%,
+    #fff3f7 48%,
+    #fff8fb 72%,
+    #fcf7ff 100%
+  );
+
+  color: #5f4f56;
+
+  min-height: 100vh;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 배경 오버레이 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #241b22 0%,
+    #2e232d 35%,
+    #241f2c 70%,
+    #1b1721 100%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 앱 전체 레이아웃 */
+
+.app {
+  position: relative;
+  z-index: 2;
+
+  max-width: 720px;
+  margin: 50px auto;
+  padding: 24px;
+}
+
+/* 상단 헤더 영역 */
+
+.app-header {
+  /* 핑크 그라디언트 */
+  background: linear-gradient(135deg, #ffc6d4, #f4a7b9, #e7c6ff);
+
+  color: white;
+
+  border-radius: 28px;
+  padding: 32px 26px;
+
+  /* 카드 그림자 */
+  box-shadow: 0 14px 35px rgba(244, 167, 185, 0.35);
+}
+
+.app-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 15px;
+  opacity: 0.95;
+}
+
+/* 남은 할 일 표시 */
+
+.summary {
+  margin-top: 16px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  display: inline-block;
+  padding: 8px 16px;
+
+  border-radius: 999px;
+}
+
+/* 홈 이동 버튼 */
+
+.btn-home {
+  display: inline-block;
+
+  margin-top: 14px;
+  padding: 9px 16px;
+
+  background: rgba(255, 255, 255, 0.95);
+  color: #d56a8c;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.4);
+}
+
+.btn-home:hover {
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
+
+/* 미션 체크리스트 영역 */
+
+.mission-box {
+  margin-top: 22px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  /* 유리 느낌 */
+  backdrop-filter: blur(6px);
+
+  border-radius: 22px;
+  padding: 22px;
+
+  border: 1px solid #ffe0ea;
+
+  box-shadow: 0 10px 25px rgba(240, 190, 210, 0.18);
+}
+
+.mission-box strong {
+  display: block;
+
+  margin-top: 16px;
+  margin-bottom: 8px;
+
+  font-size: 16px;
+  color: #d56a8c;
+}
+
+.mission-box strong:first-child {
+  margin-top: 0;
+}
+
+.mission-box label {
+  display: block;
+  margin-top: 8px;
+
+  font-size: 14px;
+  color: #6b5a60;
+}
+
+.mission-box input[type="checkbox"] {
+  accent-color: #f7a6b8;
+}
+
+/* 입력 영역 */
+
+.input-area {
+  margin-top: 22px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* 할 일 입력창 */
+
+#todo-input {
+  flex: 1;
+  min-width: 220px;
+
+  height: 46px;
+  padding: 0 14px;
+
+  border: 1px solid #ffd4e2;
+  border-radius: 16px;
+
+  background: #fffdfd;
+
+  box-shadow: 0 6px 14px rgba(244, 210, 220, 0.15);
+}
+
+#todo-input:focus {
+  border-color: #f7a6b8;
+
+  /* 포커스 효과 */
+  box-shadow: 0 0 0 4px rgba(247, 166, 184, 0.2);
+}
+
+/* 버튼 스타일 */
+
+.btn-add,
+.btn-clear {
+  border: none;
+
+  color: white;
+
+  border-radius: 16px;
+
+  padding: 0 18px;
+  height: 46px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 추가 버튼 */
+
+.btn-add {
+  background: linear-gradient(135deg, #ff9bb4, #f47295);
+}
+
+/* 전체 삭제 버튼 */
+
+.btn-clear {
+  background: linear-gradient(135deg, #c6e7a1, #a6d67b);
+}
+
+.btn-add:hover,
+.btn-clear:hover {
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
+
+/* 상태 표시 영역 */
+
+.status-box {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  margin-top: 18px;
+
+  padding: 14px 16px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border-radius: 18px;
+
+  border: 1px solid #ffe4ec;
+
+  box-shadow: 0 10px 20px rgba(236, 202, 211, 0.15);
+}
+
+.status-box strong {
+  color: #d56a8c;
+}
+
+/* Todo 리스트 */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid #ffe3ec;
+  box-shadow: 0 10px 20px rgba(236, 202, 211, 0.15);
+  animation: todoPop 0.35s ease;
+}
+
+.todo-list li input[type="checkbox"] {
+  accent-color: #f7a6b8;
+}
+
+.todo-list li span {
+  flex: 1;
+  color: #6b5a60;
+}
+
+.todo-list li button {
+  border: none;
+  background: linear-gradient(135deg, #f8b4c7, #f08cab);
+  color: white;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(240, 140, 171, 0.25);
+}
+
+.todo-list li button:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+  transition: 0.2s;
+}
+
+.todo-list li.done span {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+/* 상단 이동 버튼 */
+
+#scroll-top {
+  position: fixed;
+
+  right: 22px;
+  bottom: 22px;
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #ffb6c9, #e6c7ff);
+
+  color: white;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  display: none;
+
+  z-index: 5;
+}
+
+/* 벚꽃 배경 */
+
+.blossom-container,
+.effect-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blossom-container {
+  z-index: 0;
+}
+
+.blossom {
+  position: absolute;
+  top: -30px;
+
+  font-size: 18px;
+
+  animation: blossomFall linear forwards;
+}
+
+/* 체크 완료 꽃 이펙트*/
+.effect-container {
+  z-index: 10;
+}
+
+.effect-flower {
+  position: absolute;
+  font-size: 18px;
+  animation: flowerBurst 1.5s ease-out forwards;
+}
+
+/*필터 박스*/
+.filter-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.filter-btn {
+  border: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: #ffe4ec;
+  font-weight: 600;
+}
+
+.filter-btn.active {
+  background: #f7a6b8;
+  color: white;
+}
+
+/* 다크모드 */
+#dark-toggle {
+  border: none;
+  background: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.dark #dark-toggle {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+}
+
+.dark {
+  color: #eee;
+}
+
+.dark::before {
+  opacity: 1;
+}
+
+.dark .app-header {
+  background: linear-gradient(135deg, #333, #444);
+}
+
+.dark .mission-box,
+.dark .status-box,
+.dark .todo-list li {
+  background: #2a2a2a;
+  color: white;
+}
+
+.dark .filter-btn {
+  background: rgba(255, 220, 230, 0.08);
+  color: #f4eef2;
+}
+
+.dark .filter-btn.active {
+  background: linear-gradient(135deg, #ff9bb4, #f47295);
+  color: white;
+}
+
+.dark #todo-input {
+  background: rgba(45, 35, 42, 0.92);
+  color: #f7f1f4;
+  border: 1px solid rgba(255, 210, 225, 0.12);
+}
+
+.dark #todo-input::placeholder {
+  color: rgba(247, 241, 244, 0.55);
+}
+
+.app-header,
+.mission-box,
+.status-box,
+.todo-list li,
+#todo-input,
+.filter-btn {
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* 애니메이션 */
+
+/* 벚꽃 떨어짐 */
+
+@keyframes blossomFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(40px) rotate(var(--r));
+  }
+}
+
+/* todo 추가 애니메이션 */
+
+@keyframes todoPop {
+  0% {
+    transform: translateY(8px) scale(0.98);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 체크 시 꽃 */
+@keyframes flowerBurst {
+  0% {
+    transform: translate(0, 0) scale(0.7) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--x), var(--y)) scale(1.1) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 컨페티 추가 */
+.confetti {
+  position: fixed;
+  font-size: 18px;
+  animation: confettiFall 1s ease-out forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--x), var(--y)) rotate(360deg);
+    opacity: 0;
+  }
+}

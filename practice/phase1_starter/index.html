@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phase 1 - DOM 선택 + 내용 변경</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <!-- 헤더 -->
+      <div class="app-header">
+        <h1 id="app-title">나의 할 일 앱</h1>
+        <p id="app-subtitle">오늘도 하나씩 해봐요 💪</p>
+        <div class="summary">
+          남은 할 일: <span id="remaining-count">0</span>개
+        </div>
+      </div>
+
+      <!-- 미션 안내 -->
+      <div class="mission-box">
+        <strong>🎯 Phase 1 미션</strong>
+        아래 script 태그 안을 채워서 미션을 완성해보세요!<br />
+        ① app-title 텍스트를 "나만의 Todo 앱"으로 바꾸기<br />
+        ② app-subtitle 텍스트를 원하는 문구로 바꾸기<br />
+        ③ remaining-count 숫자를 3으로 바꾸기<br />
+        ④ 콘솔에 todo-list 요소를 출력해보기
+      </div>
+
+      <!-- 입력 영역 -->
+      <div class="input-area">
+        <div class="input-row">
+          <input type="text" id="todo-input" placeholder="할 일을 입력하세요" />
+          <button class="btn-add" id="add-btn">추가</button>
+        </div>
+      </div>
+
+      <!-- 할 일 목록 (샘플) -->
+      <ul class="todo-list" id="todo-list">
+        <li class="todo-item">
+          <input type="checkbox" />
+          <span>JavaScript 공부하기</span>
+          <button class="btn-delete">삭제</button>
+        </li>
+        <li class="todo-item done">
+          <input type="checkbox" checked />
+          <span>HTML/CSS 복습</span>
+          <button class="btn-delete">삭제</button>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox" />
+          <span>DOM 실습 완료하기</span>
+          <button class="btn-delete">삭제</button>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
